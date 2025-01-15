@@ -1,0 +1,33 @@
+{%load static%}
+    <!-- start navbar -->
+    <nav class="navbar navbar-expand-md navbar-primary bg-primary shadow-lg fs-4">
+        <div class="container">
+
+            <a href="{% url 'home' %}" class="navbar-brand">
+                <img src="{% static 'img/logo.png'%}" style="width: 70px;">
+            </a>
+            <ul id="x" class="navbar-nav collapse navbar-collapse justify-content-center">
+                <li class="nav-item"><a class="nav-link mx-2 text-white fw-semibold active" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link mx-2 text-white fw-semibold" href="#about">About</a></li>
+                {% if user.id is not None%}
+                    <li class="nav-item"><a class="nav-link mx-2 text-white fw-semibold" href="#contact-us">Contact Us</a></li>
+                {% endif %}
+                <li class="nav-item"><a class="nav-link mx-2 text-white fw-semibold" href="#how-to-use">How to use!</a></li>
+            </ul>
+            <!-- menu -->
+            <ul id="x" class="navbar-nav collapse navbar-collapse justify-content-end">
+                {%  if user.id is not None%}
+                    <li class="nav-item"><a class="nav-link text-white fw-semibold" href="{% url 'account'%}">Account 👦<i class="bi bi-person-fill"></i></a></li>
+                    <li class="nav-item"><a class="nav-link text-white fw-semibold" href="{% url 'send_emails'%}">Send Emails ➕<i class="bi bi-envelope-plus-fill"></i></a></li>
+                    <li class="nav-item"><a class="nav-link text-white fw-semibold" href="{% url 'logout'%}">logout ➡️</a></li>
+
+                {% else%}
+                    <li class="nav-item"><a class="nav-link text-white fw-semibold" href="{% url 'login'%}">Login 👦</a></li>
+                    <li class="nav-item"><a class="nav-link text-white fw-semibold" href="{% url 'register'%}">Register 👨‍💼</a></li>
+                {% endif%}
+            </ul>
+
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#x"><span class="navbar-toggler-icon"></span></button>
+        </div>
+    </nav>    
+<!-- end navbar -->

@@ -1,0 +1,119 @@
+{% extends 'base/base.html'%}
+{% load static%}
+
+{% block content%}
+    <!-- start account -->
+    <div class="container">
+        <h1 class="py-4 fw-bold">Account</h1>
+        <div class="btn-group mb-3" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+            <label class="btn btn-outline-primary" id="informations_btn" for="btnradio1">Informations</label>
+          
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+            <label class="btn btn-outline-primary" id="history_btn" for="btnradio2">History</label>
+          </div>
+                    
+        <div class="informations" id="informations">
+            <div class="text-center">
+              {% include 'base/alert.html'%}
+            </div>
+            <form action="{% url 'update_info'%}" method="post"  class="shadow rounded px-3 py-3">
+              {% csrf_token%}
+                <h2 class="text-center fw-bold">Informations</h2>
+
+                <div class="row">
+                    <div class="form-group col">
+                        <label class="my-3 ps-1" for="">First Name</label>
+                        <input class="form-control" type="text" name="first_name" value="{{user.first_name}}">
+                    </div>
+                    <div class="form-group col">
+                        <label class="my-3 ps-1" for="">Last Name</label>
+                        <input class="form-control" type="text" name="last_name" value="{{user.last_name}}">
+                    </div>
+                    <div class="form-group col"></div>
+                </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label class="my-3 ps-1" for="">Username</label>
+                        <input class="form-control" type="text" name="username" value="{{user.username}}">
+                    </div>
+                    <div class="form-group col">
+                        <label class="my-3 ps-1" for="">Email</label>
+                        <input class="form-control" type="text" value="{{user.email}}" disabled>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label class="my-3 ps-1 fw-medium" for="">Email Password</label>
+                        <input class="form-control" value="{{email_password.password}}" name="password" type="password">
+                    </div>
+                    <div class="form-group col">
+                        <label class="my-3 ps-1 fw-medium " for="">Repeat Email Password</label>
+                        <input class="form-control" value="{{email_password.password}}" name="confirm_password" type="password">
+                    </div>    
+                </div>
+                <div class="row">
+                    <div class="form-group alert alert-warning w-75 m-4">
+                        Please You must put your Gmail or hotmail... acount passwoed to allow sending emails.
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Save Changes</button>
+            </form>
+        </div>
+     
+             <!-- start history -->
+             <div class=" history row gap-2 shadow rounded d-none px-3 py-3" id="history">
+                <h2 class="text-center fw-bold">History</h2>
+                {% for history in email_history%}
+                  {% if history.is_sent%}
+                    <div class="card bg-success bg-opacity-50" style="width: 22rem;">
+                  {%else%}
+                    <div class="card bg-danger bg-opacity-50" style="width: 22rem;">
+                  {%endif%}
+                      <div class="card-body">
+                          <h5 class="card-title">{{history.user}}</h5>
+                          <h6 class="card-subtitle mb-2 text-body-secondary"><span class="pe-1 text-primary fw-bold">To: </span>{{history.recipient}}</h6>
+                          <p class="card-text"><span class="pe-1 text-danger fw-bold">Message:</span>{{history.message}}</p>
+                          <p class="fw-bold fs-6 text-center">{{history.sent_date}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+                        <!-- Pagination -->
+                              <nav aria-label="...">
+                                <ul class="pagination justify-content-center">
+                                  <li class="page-item disabled">
+                                    <span class="page-link">Previous</span>
+                                  </li>
+                                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                  <li class="page-item active" aria-current="page">
+                                    <span class="page-link">2</span>
+                                  </li>
+                                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                  <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                  </li>
+                                </ul>
+                              </nav>
+                                                                    
+            </div>
+            
+            <!-- end history -->
+    
+    <!-- end account -->
+    </div>
+     <script>
+        // account show/hid information or history
+        const btn_informations = document.getElementById('informations_btn')
+        const btn_history = document.getElementById('history_btn')
+        const informations = document.getElementById("informations")
+        const history = document.getElementById("history")
+        btn_history.onclick = function(){
+            informations.classList.add("d-none")
+            history.classList.remove('d-none')
+        }
+        btn_informations.onclick = function(){
+            history.classList.add('d-none')
+            informations.classList.remove('d-none')
+        }
+     </script>
+{% endblock content%}

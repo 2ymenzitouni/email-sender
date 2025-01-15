@@ -1,0 +1,60 @@
+{% extends 'base/base.html'%}
+{% load static%}
+
+{% block content%}
+    <!-- start Register form -->
+    <div class="register m-auto my-5 w-50">
+        <form action="{% url 'register'%}" method="post" class=" px-4 pt-3 shadow rounded">
+            {% csrf_token%}
+            <h1 class="py-4 text-center fw-bold">Register</h1>
+            {% include 'base/alert.html'%}
+            <div class="row">
+                <div class="form-group col">
+                    <label class="my-3 ps-1" for="">First Name</label>
+                    {{form.first_name}}
+                </div>
+                <div class="form-group col">
+                    <label class="my-3 ps-1" for="">Last Name</label>
+                    {{form.last_name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label class="my-3 ps-1" for="">Username</label>
+                    {{form.username}}
+                </div>
+                <div class="form-group col">
+                    <label class="my-3 ps-1" for="">Email</label>
+                    {{form.email}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label class="my-3 ps-1" for="">Password</label>
+                    {{form.password}}
+                </div>
+                <div class="form-group col">
+                    <label class="my-3 ps-1" for="">Repeat Password</label>
+                    {{form.confirm_password}}
+
+                    <!-- ========= -->
+                </div>
+            </div>
+            <div class="row pt-3">
+                <div class="form-group col">
+                    {{form.email.errors}}
+                    {{form.non_field_errors}}
+
+                </div>
+            </div>
+
+            <button class="btn btn-primary mx-1 my-5 px-5" type="submit">Register</button>
+
+            <span class="text-end mx-5">Already have and account?<a class="ps-1" href="{% url 'login'%}">Login</a></span>
+
+        </form>
+     </div>
+
+    <!-- end Register form -->
+
+{% endblock content%}

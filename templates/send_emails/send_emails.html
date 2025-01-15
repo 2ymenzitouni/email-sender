@@ -1,0 +1,121 @@
+{% extends 'base/base.html'%}
+
+{%block content%}
+    <!-- start send emails -->
+    <div class="container-fluid container-md shadow rounded w-75 p-3 mt-5">
+        <h1 class="text-center py-4 fw-bold">Send Emails</h1>
+            <form action="">
+                <div class="row">
+                    <div class="form-group col">
+                        <label class="my-3 ps-2 fw-semibold fs-5" for="">Recipient(s)</label>
+                        <textarea class="form-control" name="" id="" cols="30" rows="5" placeholder="foulen.connect@gmail.com&#10;foulen.explores@gmail.com&#10;foulen.creates@gmail.com&#10;foulen.passion@gmail.com&#10;foulen.insights@gmail.com"></textarea>
+                    </div>
+                </div>
+                <div class="alert alert-warning my-3">
+                    Make sure that you put emails line by line.
+                </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label class="my-3 ps-2 fw-semibold fs-5" for="">Sender</label>
+                        <input class="form-control bg-secondary-subtle text-secondary" value="izitouni917@gmail.com" type="text" readonly>
+                    </div>
+                </div>
+                <div class="alert alert-warning my-3">
+                    Make sure that you put your email password.
+                </div>
+
+                <div class="row">
+                    <div class="form-group col">
+                        <label class="my-3 ps-2 fw-semibold fs-5" for="">Subject</label>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label class="my-3 ps-2 fw-semibold fs-5" for="">Message</label>
+                        <textarea class="form-control" name="" id="" cols="30" rows="10" placeholder='
+                        <p>
+                            A paragraph is a self-contained unit of discourse in writing dealing with a particular point or idea. Though not required by the orthographic conventions of any language with a writing system, paragraphs are a conventional means of organizing extended segments of prose. Wikipedia
+                        </p>
+                        <a href="#" style="">Click Here</a>
+                        <img src="img/...." alt="">'></textarea>
+                    </div>
+                </div>
+                <div class="alert alert-warning mt-3 w-50">
+                    • You can only use  <b>&lt;/p&gt; &lt;/img&gt;&lt; /a&gt;</b> 
+                </div>
+
+                <button class="btn btn-primary my-3 ms-3 px-4" type="submit" onclick="countdown(5 , 'seconds')">Send</button>
+                <button class="btn btn-danger my-3" data-bs-toggle="collapse" data-bs-target="#preview-collapse">Preview</button>
+
+            </form>
+
+            <div class="preview collapse w-75 m-auto " id="preview-collapse">
+                <h3 class="text-center py-4 fw-bold">Preview</h3>
+                <div class="message m-auto shadow-sm p-3">
+                    <p>A paragraph is a self-contained unit of discourse in writing dealing with a particular point or idea. Though not required by the orthographic conventions of any language with a writing system, paragraphs are a conventional means of organizing extended segments of prose. Wikipedia
+                    </p>
+                    <a href="#" style="">Click Here</a>
+                    <img src="img/...." alt="">
+                </div>
+            </div>
+            <div class="remaining w-50 mx-auto my-4">
+                <div class="row justify-content-center align-items-center">
+                    <p id='remaining' class="col-auto pe-1 text-success fw-bold d-none">Remaining Time:</p>
+                    <p id="countdown" class="col-auto bg-success-subtle p-2 rounded fw-bold countdown"></p>
+                </div>
+                <!-- <div class="row justify-content-center align-items-center">
+                    <p class="col-auto pe-1 text-success fw-bold">Sending email to :</p>
+                    <p class="col-auto text-danger fw-bold">foulen@gmail.com</p>
+                    <p class="col-auto ">in</p>
+                    <p class="col-auto bg-success-subtle p-2 rounded countdown"></p>
+                </div> -->
+            </div>
+                <div class="row w-75 m-auto">
+                    <table class="table-primary">
+                        <tr class="table-primary text-center bg-warning">
+                            <th class="table-primary py-3">Recipient(s)</th>
+                            <th class="table-primary">Message</th>
+                            <th class="table-primary">S/F</th>
+                        </tr>
+                        <tr class="text-center bg-success-subtle">
+                            <td class="table-primary px-3 fw-bold">Foulen@gmail.com</td>
+                            <td class="table-secondary py-3 pe-5">A paragraph is a self-contained unit of discourse in writing dealing with a particular point or idea. Though not required by the orthographic conventions of any language with a writing system.</td>
+                            <td class="table-success py-4 pe-5"><a class="bg-success text-white text-decoration-none px-2 py-1 rounded" href="#">Successful</a></td>
+                        </tr>
+                        <tr class="text-center bg-danger-subtle">
+                            <td class="table-primary px-3 fw-bold">Foulen@gmail.com</td>
+                            <td class="table-secondary py-3 pe-5">A paragraph is a self-contained unit of discourse in writing dealing with a particular point or idea. Though not required by the orthographic conventions of any language with a writing system.</td>
+                            <td class="table-success py-4 pe-5"><a class="bg-danger text-white text-decoration-none px-2 py-1 rounded" href="#">Failed</a></td>
+                        </tr>
+                        <tr class="text-center bg-success-subtle">
+                            <td class="table-primary px-3 fw-bold">Foulen@gmail.com</td>
+                            <td class="table-secondary py-3 pe-5">A paragraph is a self-contained unit of discourse in writing dealing with a particular point or idea. Though not required by the orthographic conventions of any language with a writing system.</td>
+                            <td class="table-success py-4 pe-5"><a class="bg-success text-white text-decoration-none px-2 py-1 rounded" href="#">Success</a></td>
+                        </tr>
+                          
+                            
+                    </table>
+
+                </div>
+    </div>
+    <!-- end send emails -->
+
+    <!-- Javascript Code -->
+    <script>
+       
+        function countdown(timeLeft , seconds_or_minutes) {
+                let countdownElement = document.getElementById('countdown');
+                let remaining_time = document.getElementById('remaining').classList.remove('d-none')
+                let countdownTimer = setInterval(function() {
+                timeLeft -= 1;
+                countdownElement.textContent = timeLeft.toString() + ' ' +  seconds_or_minutes;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdownTimer);
+                    }
+                }, 1000); // Update every second;
+        }
+    </script>
+
+{%endblock content%}

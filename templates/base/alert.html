@@ -1,0 +1,10 @@
+{% if messages %}
+    {% for message in messages%}
+
+        <div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show" {% endif %} role="alert">
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error: {% endif %}
+            <span class="fw-medium">{{ message }}</span>
+        </div>
+      
+    {% endfor%}
+{% endif %}

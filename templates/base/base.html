@@ -1,0 +1,33 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- css bootstrap -->
+     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+     <!-- css style -->
+      <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <title>Document</title>
+</head>
+<body>
+    
+        {% include 'base/navbar.html'%}
+        {%block content%}
+
+        {%endblock content%}
+        {% include 'base/footer.html'%}
+
+
+
+
+        
+
+        <!-- ============================Javascript========================== -->
+        <!-- js bootstrap -->
+        <script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
+        <!-- js -->
+        <script src="{% static 'js/main.js'%}"></script>
+    </body>
+</html>
